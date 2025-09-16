@@ -83,7 +83,7 @@ public class Countdown extends TelegramLongPollingBot {
     }
 
   
-    @Scheduled(cron = "0 22 16 * * ?", zone = "Asia/Kolkata")
+    @Scheduled(cron = "0 00 9 * * ?", zone = "Asia/Kolkata")
     public void sendCountdown() {
         if (birthday == null) {
             birthday = LocalDate.parse(birthdayString);
