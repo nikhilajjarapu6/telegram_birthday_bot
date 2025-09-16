@@ -33,24 +33,40 @@ public class SubscriberService {
 	}
 	
 	public void addSubscriber(Long chatId) {
-		subscribers.add(chatId);
-		//method to store subscriber into JSON
-		save();
+	    if (subscribers.add(chatId)) { // Only if it wasn't already present
+	        if (save()) {
+	            System.out.println("✅ Added subscriber: " + chatId);
+	        } else {
+	            System.err.println("⚠️ Failed to save subscriber: " + chatId);
+	        }
+	    } else {
+	        System.out.println("ℹ️ Subscriber already exists: " + chatId);
+	    }
 	}
-	
 
 	public void removeSubscriber(Long chatId) {
-		subscribers.remove(chatId);
+	    if (subscribers.remove(chatId)) { // Only if it was present
+	        if (save()) {
+	            System.out.println("❌ Removed subscriber: " + chatId);
+	        } else {
+	            System.err.println("⚠️ Failed to update JSON after removing: " + chatId);
+	        }
+	    } else {
+	        System.out.println("ℹ️ Subscriber not found: " + chatId);
+	    }
 	}
+
 	
 	public Set<Long> getAllSubscribers(){
 		return subscribers;
 	}
-	private void save() {
-		 try {
-	            mapper.writerWithDefaultPrettyPrinter().writeValue(file, subscribers);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
+	private boolean save() {
+	    try {
+	        mapper.writerWithDefaultPrettyPrinter().writeValue(file, subscribers);
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 }
