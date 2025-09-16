@@ -40,15 +40,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-		<!-- https://mvnrepository.com/artifact/com.github.pengrad/java-telegram-bot-api -->
-		<dependency>
-		    <groupId>com.github.pengrad</groupId>
-		    <artifactId>java-telegram-bot-api</artifactId>
-		    <version>8.3.0</version>
-		</dependency>
-=======
->>>>>>> 5a87971a09073eb2d5cde5bd356bde7e4f60411b
 		
 		<!-- In your <dependencies> section -->
 		<dependency>
